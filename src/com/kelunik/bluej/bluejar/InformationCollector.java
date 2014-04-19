@@ -57,11 +57,7 @@ public class InformationCollector extends SwingWorker<Void, Void> {
 				for(BClass bClass : bPackage.getClasses()) {
 					for(BMethod bMethod : bClass.getMethods()) {
 						if(bMethod.toString().equals("public static void main([Ljava.lang.String;)")) {
-							if(bPackage.getName().equals("")) {
-								runnableClasses.add(bClass.getName());
-							} else {
-								runnableClasses.add(bPackage.getName() + "." + bClass.getName());
-							}
+							runnableClasses.add(bClass.getName());
 						}
 					}
 				}

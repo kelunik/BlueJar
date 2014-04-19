@@ -144,15 +144,9 @@ public class ExportDialog extends JDialog implements ActionListener {
 			for(BPackage bPackage : bluej.getCurrentPackage().getProject().getPackages()) {
 				for(BClass bClass : bPackage.getClasses()) {
 					if(bClass.isCompiled()) {
-						String name;
-
-						if(bPackage.getName().equals("")) {
-							name = bClass.getName();
-						} else {
-							name = bPackage.getName() + "." + bClass.getName();
-						}
-
+						String name = bClass.getName();
 						Path target = build.toPath().resolve(name.replaceAll("\\.", File.separator) + ".class");
+						target.toFile().getParentFile().mkdirs();
 						Files.copy(bClass.getClassFile().toPath(), target);
 					} else {
 						setVisible(false);

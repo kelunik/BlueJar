@@ -122,9 +122,10 @@ public class Utils {
 				File f = new File(file.getParent(), name);
 
 				if(entry.isDirectory()) {
-					f.mkdir();
 					continue;
 				}
+
+				f.getParentFile().mkdirs();
 
 				InputStream is = jar.getInputStream(entry);
 				FileOutputStream fos = new FileOutputStream(f);
